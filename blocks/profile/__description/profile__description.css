@@ -1,0 +1,7 @@
+.profile__description {
+  margin: 0;
+  font-weight: normal;
+  font-size: 18px;
+  font-style: normal;
+  line-height: (22 / 18);
+}

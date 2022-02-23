@@ -1,0 +1,7 @@
+.button_type_edit {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #fff;
+  background: url(../../../images/icon-edit.svg) no-repeat center / 10px;
+}
