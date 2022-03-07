@@ -1,0 +1,12 @@
+.button_type_save {
+  width: 100%;
+  margin-top: 18px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  color: #fff;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: calc(22 / 18);
+  text-align: center;
+  background-color: #000;
+}
