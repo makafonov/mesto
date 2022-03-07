@@ -22,3 +22,5 @@
 @import url(../blocks/gallery/__item/gallery__item.css);
 @import url(../blocks/gallery/__caption/gallery__caption.css);
 @import url(../blocks/gallery/__title/gallery__title.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);
