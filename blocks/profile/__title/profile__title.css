@@ -9,3 +9,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__title {
+    margin-right: 10px;
+    font-size: 27px;
+    text-align: center;
+  }
+}

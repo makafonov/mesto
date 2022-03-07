@@ -1,11 +1,9 @@
 .popup__container {
   position: relative;
-  left: 50%;
   box-sizing: border-box;
   width: 430px;
   padding: 34px 36px 37px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 0 25px rgba(0, 0, 0, .15);
-  transform: translate(-50%);
 }

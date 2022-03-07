@@ -5,3 +5,10 @@
   font-style: normal;
   line-height: calc(22 / 18);
 }
+
+@media screen and (max-width: 767px) {
+  .footer__text {
+    font-size: 14px;
+    line-height: calc(17 / 14);
+  }
+}

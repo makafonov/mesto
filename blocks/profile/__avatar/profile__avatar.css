@@ -5,3 +5,9 @@
   border-radius: 50%;
   background: url(../../../images/avatar.png) no-repeat center / cover;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__avatar {
+    margin-right: 0;
+  }
+}

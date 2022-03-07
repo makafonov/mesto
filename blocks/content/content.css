@@ -1,4 +1,13 @@
 .content {
+  max-width: calc(100% - 200px * 2);
   padding-right: 200px;
   padding-left: 200px;
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    max-width: calc(100% - 19px * 2);
+    padding-right: 19px;
+    padding-left: 19px;
+  }
 }

@@ -1,6 +1,6 @@
 .gallery__title {
+  max-width: 80%;
   margin: 0;
-  margin-right: 30px;
   overflow-x: hidden;
   color: #000;
   font-weight: 900;

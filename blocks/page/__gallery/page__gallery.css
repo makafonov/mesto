@@ -2,3 +2,10 @@
   margin-top: 50px;
   margin-bottom: 66px;
 }
+
+@media screen and (max-width: 767px) {
+  .page__gallery {
+    margin-top: 36px;
+    margin-bottom: 48px;
+  }
+}
