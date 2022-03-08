@@ -8,8 +8,8 @@
 
 @media screen and (max-width: 767px) {
   .profile__description {
+    justify-self: center;
     font-size: 14px;
     line-height: calc(17 / 14);
-    text-align: center;
   }
 }

@@ -1,0 +1,17 @@
+.profile__info {
+  display: grid;
+  grid-template-areas:
+    'name edit'
+    'description .';
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: 1fr, 30px;
+  gap: 10px 19px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    margin-top: 28px;
+    margin-left: 27px;
+    column-gap: 11px;
+  }
+}
