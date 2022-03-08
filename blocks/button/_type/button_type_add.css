@@ -6,6 +6,11 @@
   background: url(../../../images/icon-add.svg) no-repeat center / 22px;
 }
 
+.button_type_add:hover {
+  border-color: rgba(255, 255, 255, .6);
+  opacity: .6;
+}
+
 @media screen and (max-width: 1023px) {
   .button_type_add {
     width: 100%;

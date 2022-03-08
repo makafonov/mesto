@@ -3,3 +3,7 @@
   height: 19px;
   background: url(../../../images/icon-like.svg) no-repeat center / cover;
 }
+
+.button_type_like:hover {
+  opacity: .6;
+}

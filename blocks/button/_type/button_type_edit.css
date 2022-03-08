@@ -6,6 +6,11 @@
   background: url(../../../images/icon-edit.svg) no-repeat center / 10px;
 }
 
+.button_type_edit:hover {
+  border-color: rgba(255, 255, 255, .6);
+  opacity: .6;
+}
+
 @media screen and (max-width: 767px) {
   .button_type_edit {
     width: 18px;
