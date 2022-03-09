@@ -5,6 +5,7 @@
   margin-top: 7px;
   border: 1px solid #fff;
   background: url(../../../images/icon-edit.svg) no-repeat center / 10px;
+  transition: opacity .3s ease;
 }
 
 .button_type_edit:hover {

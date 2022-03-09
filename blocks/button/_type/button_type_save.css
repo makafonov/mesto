@@ -10,6 +10,7 @@
   line-height: calc(22 / 18);
   text-align: center;
   background-color: #000;
+  transition: opacity .3s ease;
 }
 
 .button_type_save:hover {

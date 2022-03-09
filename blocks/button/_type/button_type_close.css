@@ -5,6 +5,7 @@
   width: 32px;
   height: 32px;
   background: url(../../../images/icon-close.svg) no-repeat center / cover;
+  transition: opacity .3s ease;
 }
 
 .button_type_close:hover {
