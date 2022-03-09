@@ -8,7 +8,6 @@
 }
 
 .button_type_edit:hover {
-  border-color: rgba(255, 255, 255, .6);
   opacity: .6;
 }
 
