@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
+
 <body class="page">
   <header class="header page__header">
     <div class="logo"></div>
@@ -24,50 +26,7 @@
     </section>
 
     <section class="page__gallery">
-      <ul class="gallery">
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/place-karachaevsk.jpg" alt="Карачаевск.">
-          <div class="gallery__caption">
-            <h2 class="gallery__title">Карачаевск</h2>
-            <button class="button button_type_like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/place-elbrus.jpg" alt="Гора Эльбрус.">
-          <div class="gallery__caption">
-            <h2 class="gallery__title">Гора Эльбрус</h2>
-            <button class="button button_type_like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/place-dombai.jpg" alt="Домбай.">
-          <div class="gallery__caption">
-            <h2 class="gallery__title">Домбай</h2>
-            <button class="button button_type_like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/place-elbrus.jpg" alt="Гора Эльбрус.">
-          <div class="gallery__caption">
-            <h2 class="gallery__title">Гора Эльбрус</h2>
-            <button class="button button_type_like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/place-dombai.jpg" alt="Домбай.">
-          <div class="gallery__caption">
-            <h2 class="gallery__title">Домбай</h2>
-            <button class="button button_type_like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/place-karachaevsk.jpg" alt="Карачаево-Черкесия.">
-          <div class="gallery__caption">
-            <h2 class="gallery__title">Карачаево-Черкесия</h2>
-            <button class="button button_type_like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="gallery"></ul>
     </section>
   </main>
 
@@ -87,6 +46,17 @@
     </div>
   </div>
 
+  <template id="gallery-item-template">
+    <li class="gallery__item">
+      <img class="gallery__image" src="" alt="">
+      <div class="gallery__caption">
+        <h2 class="gallery__title"></h2>
+        <button class="button button_type_like" type="button" aria-label="Мне нравится"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="index.js"></script>
 </body>
+
 </html>
