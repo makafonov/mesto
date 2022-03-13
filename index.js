@@ -43,6 +43,10 @@ const initialCards = [
 ];
 
 const toggleLike = (event) => event.target.classList.toggle('button_type_like-active');
+const removeCard = (event) => {
+  const card = event.target.closest('.gallery__item');
+  card.remove();
+};
 
 const addCard = (name, link, first = true) => {
   const cardTemplate = document.querySelector('#gallery-item-template').content;
@@ -53,6 +57,7 @@ const addCard = (name, link, first = true) => {
   cardElement.querySelector('.gallery__image').src = link;
 
   cardElement.querySelector('.button_type_like').addEventListener('click', toggleLike);
+  cardElement.querySelector('.button_type_trash').addEventListener('click', removeCard);
 
   if (first) {
     galleryContainer.prepend(cardElement);
