@@ -42,6 +42,8 @@ const initialCards = [
   },
 ];
 
+const toggleLike = (event) => event.target.classList.toggle('button_type_like-active');
+
 const addCard = (name, link, first = true) => {
   const cardTemplate = document.querySelector('#gallery-item-template').content;
   const cardElement = cardTemplate.querySelector('.gallery__item').cloneNode(true);
@@ -49,6 +51,8 @@ const addCard = (name, link, first = true) => {
   cardElement.querySelector('.gallery__title').textContent = name;
   cardElement.querySelector('.gallery__image').alt = `${name}.`;
   cardElement.querySelector('.gallery__image').src = link;
+
+  cardElement.querySelector('.button_type_like').addEventListener('click', toggleLike);
 
   if (first) {
     galleryContainer.prepend(cardElement);
