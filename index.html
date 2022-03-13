@@ -34,13 +34,25 @@
     <p class="footer__text">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="userProfile">
         <input class="popup__input popup__input_property_name" name="name" type="text" value="">
         <input class="popup__input popup__input_property_description" name="description" type="text" value="">
+        <button class="button button_type_save" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_add-card">
+    <div class="popup__container">
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form name="addCard">
+        <input class="popup__input popup__input_property_name" name="name" type="text" value="" placeholder="Название">
+        <input class="popup__input popup__input_property_link" name="link" type="text" value="" placeholder="Ссылка на картинку">
         <button class="button button_type_save" type="submit">Сохранить</button>
       </form>
     </div>
