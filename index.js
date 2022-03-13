@@ -43,21 +43,30 @@ const initialCards = [
 ];
 
 const toggleLike = (event) => event.target.classList.toggle('button_type_like-active');
-const removeCard = (event) => {
-  const card = event.target.closest('.gallery__item');
-  card.remove();
+const togglePopup = (popup) => popup.classList.toggle('popup_opened');
+const removeCard = (event) => event.target.closest('.gallery__item').remove();
+const renderPreview = (name, link) => {
+  const popupPreview = document.querySelector('.popup_type_preview');
+  const previewImage = popupPreview.querySelector('.preview__image');
+
+  popupPreview.querySelector('.preview__title').textContent = name;
+  previewImage.alt = `${name}.`;
+  previewImage.src = link;
+  togglePopup(popupPreview);
 };
 
 const addCard = (name, link, first = true) => {
   const cardTemplate = document.querySelector('#gallery-item-template').content;
   const cardElement = cardTemplate.querySelector('.gallery__item').cloneNode(true);
+  const cardImage = cardElement.querySelector('.gallery__image');
 
   cardElement.querySelector('.gallery__title').textContent = name;
-  cardElement.querySelector('.gallery__image').alt = `${name}.`;
-  cardElement.querySelector('.gallery__image').src = link;
+  cardImage.alt = `${name}.`;
+  cardImage.src = link;
 
   cardElement.querySelector('.button_type_like').addEventListener('click', toggleLike);
   cardElement.querySelector('.button_type_trash').addEventListener('click', removeCard);
+  cardElement.querySelector('.gallery__image').addEventListener('click', () => renderPreview(name, link));
 
   if (first) {
     galleryContainer.prepend(cardElement);
@@ -66,7 +75,6 @@ const addCard = (name, link, first = true) => {
   }
 };
 
-const togglePopup = (popup) => popup.classList.toggle('popup_opened');
 const editProfile = () => {
   nameInput.value = userName.textContent;
   descriptionInput.value = userDescription.textContent;
@@ -88,7 +96,6 @@ const submitCardForm = (event) => {
 };
 
 initialCards.forEach((card) => addCard(card.name, card.link, false));
-
 closeButtons.forEach((button) => {
   button.addEventListener('click', (event) => togglePopup(event.target.closest('.popup')));
 });

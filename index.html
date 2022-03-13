@@ -25,7 +25,7 @@
       <button class="button button_type_add" type="button" aria-label="Добавить"></button>
     </section>
 
-    <section class="page__gallery">
+    <section class="page__gallery" aria-label="Галлерея">
       <ul class="gallery"></ul>
     </section>
   </main>
@@ -55,6 +55,14 @@
         <input class="popup__input popup__input_property_link" name="link" type="text" value="" placeholder="Ссылка на картинку">
         <button class="button button_type_save" type="submit">Сохранить</button>
       </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_preview">
+    <div class="preview">
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+      <img class="preview__image" src="#" alt="">
+      <h2 class="preview__title"></h2>
     </div>
   </div>
 
