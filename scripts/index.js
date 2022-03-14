@@ -47,7 +47,7 @@ const createCard = (card) => {
 
   cardElement.querySelector('.button_type_like').addEventListener('click', toggleLike);
   cardElement.querySelector('.button_type_trash').addEventListener('click', removeCard);
-  cardElement.querySelector('.gallery__image').addEventListener('click', () => renderPreview(card));
+  cardImage.addEventListener('click', () => renderPreview(card));
 
   return cardElement;
 }
