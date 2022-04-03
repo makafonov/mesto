@@ -32,9 +32,24 @@ const previewCloseButton = popupPreview.querySelector(closeButtonClass);
 
 const toggleLike = (event) => event.target.classList.toggle('button_type_like-active');
 
-const openPopup = (popup) => popup.classList.add('popup_opened');
+const isEscEvent = (event, action) => {
+  const activePopup = document.querySelector('.popup_opened');
+  if (event.key === 'Escape') {
+    action(activePopup);
+  }
+};
 
 const closePopup = (popup) => popup.classList.remove('popup_opened');
+
+const handleEsc = (event) => {
+  event.preventDefault();
+  isEscEvent(event, closePopup);
+};
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keyup', handleEsc);
+}
 
 const removeCard = (event) => event.target.closest('.gallery__item').remove();
 
