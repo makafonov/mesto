@@ -1,8 +1,8 @@
 .button_type_save {
   width: 100%;
   margin-top: 18px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding: 14px 0;
+  border: 1px solid #000;
   border-radius: 2px;
   color: #fff;
   font-weight: normal;
