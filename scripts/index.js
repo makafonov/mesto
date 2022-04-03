@@ -53,7 +53,6 @@ const closePopup = (popup) => {
 }
 
 const handleEsc = (event) => {
-  event.preventDefault();
   isEscEvent(event, closePopup);
 };
 
@@ -67,7 +66,7 @@ const removeCard = (event) => event.target.closest('.gallery__item').remove();
 
 const renderPreview = (card) => {
   previewTitle.textContent = card.name;
-  previewImage.alt = `${card.name}.`;
+  previewImage.alt = card.name;
   previewImage.src = card.link;
   openPopup(popupPreview);
 };
@@ -77,7 +76,7 @@ const createCard = (card) => {
   const cardImage = cardElement.querySelector('.gallery__image');
 
   cardElement.querySelector('.gallery__title').textContent = card.name;
-  cardImage.alt = `${card.name}.`;
+  cardImage.alt = card.name;
   cardImage.src = card.link;
 
   cardElement.querySelector('.button_type_like').addEventListener('click', toggleLike);
