@@ -2,6 +2,7 @@ import initialCards from './cards.js';
 import Card from './Card.js';
 import { disableSubmitButton, enableSubmitButton, FormValidator } from './FormValidator.js';
 
+const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 
@@ -25,10 +26,6 @@ const galleryContainer = document.querySelector('.gallery');
 
 const editProfileButton = document.querySelector('.button_type_edit');
 const addCardButton = document.querySelector('.button_type_add');
-const closeButtonClass = '.button_type_close';
-const profileCloseButton = popupEditProfile.querySelector(closeButtonClass);
-const cardCloseButton = popupAddCard.querySelector(closeButtonClass);
-const previewCloseButton = popupPreview.querySelector(closeButtonClass);
 
 const getActivePopup = () => document.querySelector('.popup_opened');
 
@@ -122,9 +119,14 @@ const submitCardForm = (event) => {
 
 initialCards.forEach((card) => renderCard(card, false));
 
-profileCloseButton.addEventListener('click', () => closePopup(popupEditProfile));
-cardCloseButton.addEventListener('click', () => closePopup(popupAddCard));
-previewCloseButton.addEventListener('click', () => closePopup(popupPreview));
+popups.forEach((popup) => {
+  popup.addEventListener('click', (event) => {
+    if (event.target.classList.contains('button_type_close')) {
+      closePopup(popup);
+    }
+  });
+});
+
 addCardButton.addEventListener('click', addCard);
 editProfileButton.addEventListener('click', editProfile);
 
