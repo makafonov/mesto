@@ -69,11 +69,16 @@ const renderPreview = (card) => {
   openPopup(popupPreview);
 };
 
-const renderCard = (data, first = true) => {
+const createCard = (data) => {
   const cardData = data;
   cardData.preview = renderPreview;
   const card = new Card(cardData, '#gallery-item-template');
   const cardElement = card.generateCard();
+  return cardElement;
+}
+
+const renderCard = (data, first = true) => {
+  const cardElement = createCard(data);
 
   if (first) {
     galleryContainer.prepend(cardElement);
@@ -123,7 +128,6 @@ const enableValidation = ({ formSelector, ...params }) => {
 enableValidation(config);
 
 initialCards.forEach((card) => renderCard(card, false));
-
 popups.forEach((popup) => {
   popup.addEventListener('click', (event) => {
     if (event.target.classList.contains('button_type_close')) {
