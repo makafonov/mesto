@@ -1,6 +1,6 @@
 export default class {
-  constructor(data, cardSelector) {
-    this._cardSelector = cardSelector;
+  constructor(data, templateSelector) {
+    this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
 
@@ -9,7 +9,7 @@ export default class {
 
   _getTemplate() {
     return document
-      .querySelector(this._cardSelector)
+      .querySelector(this._templateSelector)
       .content.querySelector('.gallery__item')
       .cloneNode(true);
   }

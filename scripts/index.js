@@ -1,4 +1,6 @@
-/* global hideInputError, enableSubmitButton, disableSubmitButton, initialCards */
+import initialCards from './cards.js';
+import Card from './Card.js';
+import { disableSubmitButton, enableSubmitButton, FormValidator } from './FormValidator.js';
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
@@ -21,8 +23,6 @@ const userName = document.querySelector('.profile__title');
 const userDescription = document.querySelector('.profile__description');
 const galleryContainer = document.querySelector('.gallery');
 
-const cardTemplate = document.querySelector('#gallery-item-template').content;
-
 const editProfileButton = document.querySelector('.button_type_edit');
 const addCardButton = document.querySelector('.button_type_add');
 const closeButtonClass = '.button_type_close';
@@ -30,13 +30,17 @@ const profileCloseButton = popupEditProfile.querySelector(closeButtonClass);
 const cardCloseButton = popupAddCard.querySelector(closeButtonClass);
 const previewCloseButton = popupPreview.querySelector(closeButtonClass);
 
-const toggleLike = (event) => event.target.classList.toggle('button_type_like-active');
-
 const getActivePopup = () => document.querySelector('.popup_opened');
 
-const isEscEvent = (event, action) => {
+const handleEsc = (event) => {
   if (event.key === 'Escape') {
-    action(getActivePopup());
+    closePopup(getActivePopup());
+  }
+};
+
+const handleClickOutside = (event) => {
+  if (event.target === event.currentTarget) {
+    closePopup(getActivePopup());
   }
 };
 
@@ -50,44 +54,32 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('click', handleClickOutside);
   document.removeEventListener('keyup', handleEsc);
-}
-
-const handleEsc = (event) => {
-  isEscEvent(event, closePopup);
 };
 
-const handleClickOutside = (event) => {
-  if (event.target === event.currentTarget) {
-    closePopup(getActivePopup());
-  }
-};
+const resetFormsErrors = () => {
+  const inputs = document.querySelectorAll('.popup__input');
+  const errors = document.querySelectorAll('.popup__error');
 
-const removeCard = (event) => event.target.closest('.gallery__item').remove();
+  inputs.forEach((input) => input.classList.remove('popup__input_type_error'));
+  errors.forEach((error) => {
+    error.classList.remove('popup__error_visible');
+    error.textContent = '';
+  });
+};
 
 const renderPreview = (card) => {
-  previewTitle.textContent = card.name;
-  previewImage.alt = card.name;
-  previewImage.src = card.link;
+  const name = card.getName();
+  previewTitle.textContent = name;
+  previewImage.alt = name;
+  previewImage.src = card.getLink();
   openPopup(popupPreview);
 };
 
-const createCard = (card) => {
-  const cardElement = cardTemplate.querySelector('.gallery__item').cloneNode(true);
-  const cardImage = cardElement.querySelector('.gallery__image');
-
-  cardElement.querySelector('.gallery__title').textContent = card.name;
-  cardImage.alt = card.name;
-  cardImage.src = card.link;
-
-  cardElement.querySelector('.button_type_like').addEventListener('click', toggleLike);
-  cardElement.querySelector('.button_type_trash').addEventListener('click', removeCard);
-  cardImage.addEventListener('click', () => renderPreview(card));
-
-  return cardElement;
-};
-
-const renderCard = (card, first = true) => {
-  const cardElement = createCard(card);
+const renderCard = (data, first = true) => {
+  const cardData = data;
+  cardData.preview = renderPreview;
+  const card = new Card(cardData, '#gallery-item-template');
+  const cardElement = card.generateCard();
 
   if (first) {
     galleryContainer.prepend(cardElement);
@@ -100,13 +92,7 @@ const editProfile = () => {
   nameInput.value = userName.textContent;
   descriptionInput.value = userDescription.textContent;
 
-  [nameInput, descriptionInput].forEach((input) => {
-    hideInputError(userProfileForm, input, {
-      inputErrorClass: 'popup__input_type_error',
-      errorClass: 'popup__error_visible',
-    });
-  });
-
+  resetFormsErrors();
   enableSubmitButton(submitProfileButton, 'button_disabled');
   openPopup(popupEditProfile);
 };
@@ -119,6 +105,8 @@ const submitProfileForm = (event) => {
 };
 
 const addCard = () => {
+  addCardForm.reset();
+  resetFormsErrors();
   disableSubmitButton(submitCardButton, 'button_disabled');
   openPopup(popupAddCard);
 };
@@ -129,7 +117,6 @@ const submitCardForm = (event) => {
     name: cardNameInput.value,
     link: cardLinkInput.value,
   });
-  addCardForm.reset();
   closePopup(popupAddCard);
 };
 
@@ -143,3 +130,20 @@ editProfileButton.addEventListener('click', editProfile);
 
 userProfileForm.addEventListener('submit', submitProfileForm);
 addCardForm.addEventListener('submit', submitCardForm);
+
+const enableValidation = ({ formSelector, ...params }) => {
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach((form) => {
+    const validator = new FormValidator(params, form);
+    validator.enableValidation();
+  });
+};
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.button',
+  inactiveButtonClass: 'button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+});
