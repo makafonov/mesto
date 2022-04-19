@@ -1,15 +1,15 @@
 .button_type_save {
   width: 100%;
-  margin-top: 18px;
   padding: 14px 0;
   border: 1px solid #000;
+  margin-top: 18px;
+  background-color: #000;
   border-radius: 2px;
   color: #fff;
-  font-weight: normal;
   font-size: 18px;
+  font-weight: normal;
   line-height: calc(22 / 18);
   text-align: center;
-  background-color: #000;
   transition: opacity .3s ease;
 }
 

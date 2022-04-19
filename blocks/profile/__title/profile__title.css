@@ -1,15 +1,15 @@
 .profile__title {
-  margin: 0;
   overflow: hidden;
-  font-weight: 500;
+  margin: 0;
   font-size: 42px;
-  font-style: normal;
-  line-height: 1.04;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.04;
+  text-overflow: ellipsis;
+  text-rendering: optimizeLegibility;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 767px) {

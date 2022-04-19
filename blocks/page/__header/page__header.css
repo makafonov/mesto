@@ -4,9 +4,9 @@
 
 @media screen and (max-width: 767px) {
   .page__header {
-    box-sizing: border-box;
     min-width: 320px;
-    margin: 0;
+    box-sizing: border-box;
     padding-left: 27px;
+    margin: 0;
   }
 }

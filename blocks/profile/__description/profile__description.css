@@ -1,19 +1,19 @@
 .profile__description {
+  overflow: hidden;
   width: 100%;
   margin: 0;
-  overflow: hidden;
-  font-weight: normal;
   font-size: 18px;
   font-style: normal;
+  font-weight: normal;
   line-height: (22 / 18);
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 767px) {
   .profile__description {
-    justify-self: center;
     font-size: 14px;
+    justify-self: center;
     line-height: calc(17 / 14);
     text-align: center;
   }

@@ -1,6 +1,6 @@
 .preview__title {
   margin: 0;
-  font-weight: 400;
   font-size: 12px;
+  font-weight: 400;
   line-height: calc(15 / 12);
 }

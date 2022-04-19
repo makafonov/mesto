@@ -2,9 +2,9 @@
   display: block;
   min-height: 30px;
   margin: 0;
-  color: #F00;
-  font-weight: 400;
+  color: #f00;
   font-size: 12px;
+  font-weight: 400;
   line-height: calc(15 / 12);
   visibility: hidden;
 }

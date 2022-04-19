@@ -1,9 +1,9 @@
 .button_type_edit {
-  align-self: center;
   min-width: 24px;
   height: 24px;
-  margin-top: 7px;
+  align-self: center;
   border: 1px solid #fff;
+  margin-top: 7px;
   background: url(../../../images/icon-edit.svg) no-repeat center / 10px;
   transition: opacity .3s ease;
 }

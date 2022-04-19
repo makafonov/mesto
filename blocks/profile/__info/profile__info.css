@@ -1,12 +1,12 @@
 .profile__info {
   display: grid;
+  margin-right: 19px;
+  gap: 10px 19px;
   grid-template-areas:
     'name edit'
     'description .';
-  grid-template-rows: repeat(2, auto);
   grid-template-columns: 1fr, 30px;
-  gap: 10px 19px;
-  margin-right: 19px;
+  grid-template-rows: repeat(2, auto);
 }
 
 @media screen and (max-width: 767px) {

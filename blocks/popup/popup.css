@@ -8,9 +8,9 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, .5);
-  visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear .3s, opacity .3s linear;
+  visibility: hidden;
 }
 
 @media screen and (max-width: 767px) {
