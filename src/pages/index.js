@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import './index.css';
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -16,7 +16,7 @@ import {
   editProfileButton,
   addCardButton,
   validationConfig,
-} from './constants.js';
+} from '../utils/constants.js';
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
