@@ -19,7 +19,7 @@ export default class {
 
   _remove = () => {
     this._element.remove();
-  }
+  };
 
   _setEventListeners() {
     this._element.querySelector('.button_type_like').addEventListener('click', this._toggleLike);
