@@ -5,8 +5,12 @@ export default class {
     this._container = document.querySelector(containerSelector);
   }
 
-  addItem(element) {
-    this._container.append(element);
+  addItem(element, first = true) {
+    if (first) {
+      this._container.prepend(element);
+    } else {
+      this._container.append(element);
+    }
   }
 
   renderItems() {
