@@ -17,8 +17,8 @@ export default class {
     event.target.classList.toggle('button_type_like-active');
   }
 
-  _remove(event) {
-    event.target.closest('.gallery__item').remove();
+  _remove = () => {
+    this._element.remove();
   }
 
   _setEventListeners() {
