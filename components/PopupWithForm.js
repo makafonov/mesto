@@ -8,6 +8,7 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     const inputs = Array.from(this._element.querySelectorAll('.popup__input'));
+    /* eslint unicorn/prefer-object-from-entries: "off" */
     return inputs.reduce((result, { name, value }) => {
       return {
         ...result,
