@@ -7,7 +7,13 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    // TODO собирает данные всех полей формы
+    const inputs = Array.from(this._element.querySelectorAll('.popup__input'));
+    return inputs.reduce((result, { name, value }) => {
+      return {
+        ...result,
+        [name]: value,
+      };
+    }, {});
   }
 
   _setEventListeners() {
