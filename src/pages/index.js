@@ -68,6 +68,7 @@ const profilePopup = new PopupWithForm('.popup_type_edit-profile', (event) => {
   userInfo.setUserInfo(profilePopup._getInputValues());
   profilePopup.close();
 });
+[previewPopup, cardPopup, profilePopup].forEach((popup) => popup.setEventListeners());
 
 addCardButton.addEventListener('click', () => {
   formValidators[addCardForm.getAttribute('name')].resetValidation();
