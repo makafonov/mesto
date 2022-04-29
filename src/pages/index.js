@@ -57,15 +57,13 @@ const enableValidation = ({ formSelector, ...params }) => {
 };
 enableValidation(validationConfig);
 
-const cardPopup = new PopupWithForm('.popup_type_add-card', (event) => {
-  event.preventDefault();
-  const cardElement = createCard(cardPopup._getInputValues());
+const cardPopup = new PopupWithForm('.popup_type_add-card', (inputValues) => {
+  const cardElement = createCard(inputValues);
   defaultCardList.addItem(cardElement);
   cardPopup.close();
 });
-const profilePopup = new PopupWithForm('.popup_type_edit-profile', (event) => {
-  event.preventDefault();
-  userInfo.setUserInfo(profilePopup._getInputValues());
+const profilePopup = new PopupWithForm('.popup_type_edit-profile', (inputValues) => {
+  userInfo.setUserInfo(inputValues);
   profilePopup.close();
 });
 [previewPopup, cardPopup, profilePopup].forEach((popup) => popup.setEventListeners());
