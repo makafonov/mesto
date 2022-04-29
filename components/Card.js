@@ -1,10 +1,9 @@
 export default class {
-  constructor(data, templateSelector) {
+  constructor({ name, link }, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
-    this._name = data.name;
-    this._link = data.link;
-
-    this._preview = data.preview;
+    this._name = name;
+    this._link = link;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -25,7 +24,7 @@ export default class {
   _setEventListeners() {
     this._element.querySelector('.button_type_like').addEventListener('click', this._toggleLike);
     this._element.querySelector('.button_type_trash').addEventListener('click', this._remove);
-    this._imageElement.addEventListener('click', () => this._preview(this));
+    this._imageElement.addEventListener('click', () => this._handleCardClick(this));
   }
 
   getName() {
