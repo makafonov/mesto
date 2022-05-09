@@ -9,7 +9,6 @@ import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import {
   gallerySelector,
-  initialCards,
   addCardForm,
   userProfileForm,
   nameInput,
@@ -58,7 +57,7 @@ const createCard = (data) => {
 
 const defaultCardList = new Section(
   {
-    data: initialCards,
+    data: [],
     renderer: (item) => {
       const cardElement = createCard(item);
       defaultCardList.addItem(cardElement, false);
@@ -66,7 +65,18 @@ const defaultCardList = new Section(
   },
   gallerySelector
 );
-defaultCardList.renderItems();
+
+api
+  .getInitialCards()
+  .then((data) => {
+    data.forEach((card) => {
+      const cardElement = createCard(card);
+      defaultCardList.addItem(cardElement);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const formValidators = {};
 const enableValidation = ({ formSelector, ...params }) => {

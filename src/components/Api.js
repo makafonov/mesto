@@ -4,8 +4,8 @@ export default class {
     this._headers = headers;
   }
 
-  getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+  _get(path) {
+    return fetch(`${this._baseUrl}${path}`, {
       headers: this._headers,
     }).then((res) => {
       if (res.ok) {
@@ -13,5 +13,13 @@ export default class {
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });
+  }
+
+  getUserInfo() {
+    return this._get('/users/me');
+  }
+
+  getInitialCards() {
+    return this._get('/cards');
   }
 }
