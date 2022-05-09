@@ -34,11 +34,7 @@ const userInfo = new UserInfo({
 api
   .getUserInfo()
   .then((data) => {
-    userInfo.setUserInfo({
-      name: data.name,
-      description: data.about,
-      avatar: data.avatar,
-    });
+    userInfo.setUserInfo(data);
   })
   .catch((error) => {
     console.log(error);
@@ -95,8 +91,15 @@ const cardPopup = new PopupWithForm('.popup_type_add-card', (inputValues) => {
   cardPopup.close();
 });
 const profilePopup = new PopupWithForm('.popup_type_edit-profile', (inputValues) => {
-  userInfo.setUserInfo(inputValues);
-  profilePopup.close();
+  api
+    .updateUserInfo(inputValues)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+      profilePopup.close();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 [previewPopup, cardPopup, profilePopup].forEach((popup) => popup.setEventListeners());
 
