@@ -35,4 +35,12 @@ export default class {
       }),
     }).then(this._processResponse);
   }
+
+  addCard(card) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(card),
+    }).then(this._processResponse);
+  }
 }

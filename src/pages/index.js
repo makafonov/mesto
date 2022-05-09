@@ -17,6 +17,7 @@ import {
   addCardButton,
   validationConfig,
 } from '../utils/constants.js';
+import { errorHandler } from '../utils/utils.js';
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-41',
@@ -36,9 +37,7 @@ api
   .then((data) => {
     userInfo.setUserInfo(data);
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  .catch(errorHandler);
 
 const previewPopup = new PopupWithImage('.popup_type_preview');
 
@@ -70,9 +69,7 @@ api
       defaultCardList.addItem(cardElement);
     });
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  .catch(errorHandler);
 
 const formValidators = {};
 const enableValidation = ({ formSelector, ...params }) => {
@@ -86,9 +83,14 @@ const enableValidation = ({ formSelector, ...params }) => {
 enableValidation(validationConfig);
 
 const cardPopup = new PopupWithForm('.popup_type_add-card', (inputValues) => {
-  const cardElement = createCard(inputValues);
-  defaultCardList.addItem(cardElement);
-  cardPopup.close();
+  api
+    .addCard(inputValues)
+    .then((data) => {
+      const cardElement = createCard(data);
+      defaultCardList.addItem(cardElement);
+      cardPopup.close();
+    })
+    .catch(errorHandler);
 });
 const profilePopup = new PopupWithForm('.popup_type_edit-profile', (inputValues) => {
   api
@@ -97,9 +99,7 @@ const profilePopup = new PopupWithForm('.popup_type_edit-profile', (inputValues)
       userInfo.setUserInfo(data);
       profilePopup.close();
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch(errorHandler);
 });
 [previewPopup, cardPopup, profilePopup].forEach((popup) => popup.setEventListeners());
 
