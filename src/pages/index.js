@@ -1,5 +1,6 @@
 import './index.css';
 
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -18,10 +19,31 @@ import {
   validationConfig,
 } from '../utils/constants.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-41',
+  headers: {
+    authorization: '4e0acfe9-d71b-4358-91af-c8fd963442f5',
+    'Content-Type': 'application/json',
+  },
+});
+
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   descriptionSelector: '.profile__description',
+  avatarSelector: '.profile__avatar',
 });
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo({
+      name: data.name,
+      description: data.about,
+      avatar: data.avatar,
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const previewPopup = new PopupWithImage('.popup_type_preview');
 

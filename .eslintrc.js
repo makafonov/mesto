@@ -10,5 +10,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'unicorn/no-useless-promise-resolve-reject': 'off'
   },
 };
