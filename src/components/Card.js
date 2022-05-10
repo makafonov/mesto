@@ -1,8 +1,9 @@
 export default class {
-  constructor({ name, link }, templateSelector, handleCardClick) {
+  constructor({ name, link, likes }, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
     this._name = name;
     this._link = link;
+    this._likes = likes;
     this._handleCardClick = handleCardClick;
   }
 
@@ -41,6 +42,7 @@ export default class {
     this._setEventListeners();
 
     this._element.querySelector('.gallery__title').textContent = this._name;
+    this._element.querySelector('.gallery__like-counter').textContent = this._likes.length;
     this._imageElement.alt = this._name;
     this._imageElement.src = this._link;
 
