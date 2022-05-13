@@ -17,7 +17,7 @@ import {
   addCardButton,
   validationConfig,
 } from '../utils/constants.js';
-import { errorHandler } from '../utils/utils.js';
+import { errorHandler } from '../utils/helpers.js';
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-41',
