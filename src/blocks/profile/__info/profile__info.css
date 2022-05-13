@@ -1,7 +1,7 @@
 .profile__info {
   display: grid;
   margin-right: 19px;
-  gap: 10px 19px;
+  gap: 10px 18px;
   grid-template-areas:
     'name edit'
     'description .';

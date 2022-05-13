@@ -1,8 +1,7 @@
 .button_type_save {
   width: 100%;
-  padding: 14px 0;
+  padding: 13px 0;
   border: 1px solid #000;
-  margin-top: 18px;
   background-color: #000;
   border-radius: 2px;
   color: #fff;
@@ -19,7 +18,6 @@
 
 @media screen and (max-width: 767px) {
   .button_type_save {
-    margin-top: 15px;
     font-size: 14px;
     line-height: calc(17 / 14);
   }

@@ -8,3 +8,13 @@
   line-height: calc(15 / 12);
   visibility: hidden;
 }
+
+.popup__error:last-of-type {
+  margin-bottom: 18px;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__error:last-of-type {
+    margin-bottom: 14px;
+  }
+}
