@@ -7,6 +7,7 @@ export const descriptionInput = userProfileForm.querySelector('.popup__input_pro
 
 export const editProfileButton = document.querySelector('.button_type_edit');
 export const addCardButton = document.querySelector('.button_type_add');
+export const avatarButton = document.querySelector('.profile__avatar');
 
 export const validationConfig = {
   formSelector: '.popup__form',

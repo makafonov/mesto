@@ -87,6 +87,19 @@
     </div>
   </div>
 
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button class="button button_type_close" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form" name="loadAvatar" novalidate>
+        <input class="popup__input" name="avatar" type="url" value=""
+          placeholder="Ссылка на аватар" required>
+        <span class="popup__error avatar-input-error"></span>
+        <button class="button button_type_save" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <template id="gallery-item-template">
     <li class="gallery__item">
       <img class="gallery__image" src="#" alt="">

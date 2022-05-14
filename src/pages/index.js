@@ -17,6 +17,7 @@ import {
   editProfileButton,
   addCardButton,
   validationConfig,
+  avatarButton,
 } from '../utils/constants.js';
 import { errorHandler } from '../utils/helpers.js';
 
@@ -97,7 +98,7 @@ const defaultCardList = new Section(
     data: [],
     renderer: (item) => {
       const cardElement = createCard(item);
-      defaultCardList.addItem(cardElement, false);
+      defaultCardList.addItem(cardElement);
     },
   },
   gallerySelector
@@ -107,7 +108,7 @@ api
   .then((data) => {
     data.forEach((card) => {
       const cardElement = createCard(card);
-      defaultCardList.addItem(cardElement);
+      defaultCardList.addItem(cardElement, false);
     });
   })
   .catch(errorHandler);
@@ -131,8 +132,22 @@ const profilePopup = new PopupWithForm('.popup_type_edit-profile', (inputValues)
     })
     .catch(errorHandler);
 });
-[previewPopup, cardPopup, profilePopup, confirmPopup].forEach((popup) => popup.setEventListeners());
+const avatarPopup = new PopupWithForm('.popup_type_avatar', (inputValues) => {
+  api
+    .updateAvatar(inputValues)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+      avatarPopup.close();
+    })
+    .catch(errorHandler);
+});
+[previewPopup, cardPopup, profilePopup, confirmPopup, avatarPopup].forEach((popup) =>
+  popup.setEventListeners()
+);
 
+avatarButton.addEventListener('click', () => {
+  avatarPopup.open();
+});
 addCardButton.addEventListener('click', () => {
   formValidators[addCardForm.getAttribute('name')].resetValidation();
   cardPopup.open();

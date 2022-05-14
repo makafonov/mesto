@@ -64,4 +64,12 @@ export default class {
       headers: this._headers,
     }).then(this._processResponse);
   }
+
+  updateAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then(this._processResponse);
+  }
 }
