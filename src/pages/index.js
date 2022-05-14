@@ -114,6 +114,7 @@ api
   .catch(errorHandler);
 
 const cardPopup = new PopupWithForm('.popup_type_add-card', (inputValues) => {
+  cardPopup.renderLoading(true);
   api
     .addCard(inputValues)
     .then((data) => {
@@ -121,25 +122,36 @@ const cardPopup = new PopupWithForm('.popup_type_add-card', (inputValues) => {
       defaultCardList.addItem(cardElement);
       cardPopup.close();
     })
-    .catch(errorHandler);
+    .catch(errorHandler)
+    .finally(() => {
+      cardPopup.renderLoading(false);
+    });
 });
 const profilePopup = new PopupWithForm('.popup_type_edit-profile', (inputValues) => {
+  profilePopup.renderLoading(true);
   api
     .updateUserInfo(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
       profilePopup.close();
     })
-    .catch(errorHandler);
+    .catch(errorHandler)
+    .finally(() => {
+      profilePopup.renderLoading(false);
+    });
 });
 const avatarPopup = new PopupWithForm('.popup_type_avatar', (inputValues) => {
+  avatarPopup.renderLoading(true);
   api
     .updateAvatar(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
       avatarPopup.close();
     })
-    .catch(errorHandler);
+    .catch(errorHandler)
+    .finally(() => {
+      avatarPopup.renderLoading(false);
+    });
 });
 [previewPopup, cardPopup, profilePopup, confirmPopup, avatarPopup].forEach((popup) =>
   popup.setEventListeners()
