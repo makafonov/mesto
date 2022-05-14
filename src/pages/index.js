@@ -45,12 +45,6 @@ const userInfo = new UserInfo({
   descriptionSelector: '.profile__description',
   avatarSelector: '.profile__avatar',
 });
-api
-  .getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data);
-  })
-  .catch(errorHandler);
 
 const previewPopup = new PopupWithImage('.popup_type_preview');
 const confirmPopup = new PopupWithSubmit('.popup_type_confirm');
@@ -80,9 +74,9 @@ const createCard = (data) => {
         confirmPopup.setAction(() => {
           api
             .deleteCard(cardObject.getId())
-            .then((_) => {
+            .then(() => {
+              cardObject.remove();
               confirmPopup.close();
-              // TODO удалить из DOM
             })
             .catch(errorHandler);
         });
@@ -103,10 +97,13 @@ const defaultCardList = new Section(
   },
   gallerySelector
 );
+
 api
-  .getInitialCards()
-  .then((data) => {
-    data.forEach((card) => {
+  .getInitialData()
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+
+    cards.forEach((card) => {
       const cardElement = createCard(card);
       defaultCardList.addItem(cardElement, false);
     });

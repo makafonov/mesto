@@ -38,6 +38,10 @@ export default class {
     return this._cardData._id;
   }
 
+  remove = () => {
+    this._element.remove();
+  };
+
   isLiked() {
     return this._cardData.likes.some((user) => user._id === this._cardData.currentUserId);
   }

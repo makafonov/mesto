@@ -17,12 +17,16 @@ export default class {
     }).then(this._processResponse);
   }
 
-  getUserInfo() {
+  _getUserInfo() {
     return this._get('/users/me');
   }
 
-  getInitialCards() {
+  _getInitialCards() {
     return this._get('/cards');
+  }
+
+  getInitialData() {
+    return Promise.all([this._getUserInfo(), this._getInitialCards()]);
   }
 
   updateUserInfo({ name, description }) {
