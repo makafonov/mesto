@@ -87,26 +87,16 @@ const createCard = (data) => {
   return card.generateCard();
 };
 
-const defaultCardList = new Section(
-  {
-    data: [],
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      defaultCardList.addItem(cardElement);
-    },
-  },
-  gallerySelector
-);
+const cardListSection = new Section(gallerySelector, (item) => {
+  const cardElement = createCard(item);
+  cardListSection.addItem(cardElement, false);
+});
 
 api
   .getInitialData()
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData);
-
-    cards.forEach((card) => {
-      const cardElement = createCard(card);
-      defaultCardList.addItem(cardElement, false);
-    });
+    cardListSection.renderItems(cards);
   })
   .catch(errorHandler);
 
@@ -116,7 +106,7 @@ const cardPopup = new PopupWithForm('.popup_type_add-card', (inputValues) => {
     .addCard(inputValues)
     .then((data) => {
       const cardElement = createCard(data);
-      defaultCardList.addItem(cardElement);
+      cardListSection.addItem(cardElement);
       cardPopup.close();
     })
     .catch(errorHandler)

@@ -1,6 +1,5 @@
 export default class {
-  constructor({ data, renderer }, containerSelector) {
-    this._renderedItems = data;
+  constructor(containerSelector, renderer) {
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
@@ -13,8 +12,8 @@ export default class {
     }
   }
 
-  renderItems() {
-    this._renderedItems.forEach((item) => {
+  renderItems(items) {
+    items.forEach((item) => {
       this._renderer(item);
     });
   }
