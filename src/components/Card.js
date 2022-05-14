@@ -40,6 +40,7 @@ export default class {
 
   remove = () => {
     this._element.remove();
+    this._element = null;
   };
 
   isLiked() {
