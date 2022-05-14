@@ -144,6 +144,14 @@ const avatarPopup = new PopupWithForm('.popup_type_avatar', (inputValues) => {
   popup.setEventListeners()
 );
 
+const editUserInfo = () => {
+  const { name, description } = userInfo.getUserInfo();
+  nameInput.value = name;
+  descriptionInput.value = description;
+  formValidators[userProfileForm.getAttribute('name')].resetValidation();
+  profilePopup.open();
+};
+
 avatarButton.addEventListener('click', () => {
   avatarPopup.open();
 });
@@ -151,10 +159,4 @@ addCardButton.addEventListener('click', () => {
   formValidators[addCardForm.getAttribute('name')].resetValidation();
   cardPopup.open();
 });
-editProfileButton.addEventListener('click', () => {
-  const { name, description } = userInfo.getUserInfo();
-  nameInput.value = name;
-  descriptionInput.value = description;
-  formValidators[userProfileForm.getAttribute('name')].resetValidation();
-  profilePopup.open();
-});
+editProfileButton.addEventListener('click', editUserInfo);
