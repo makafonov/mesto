@@ -2,6 +2,7 @@ export const gallerySelector = '.gallery';
 
 export const addCardForm = document.forms.addCard;
 export const userProfileForm = document.forms.userProfile;
+export const avatarForm = document.forms.loadAvatar;
 export const nameInput = userProfileForm.querySelector('.popup__input_property_name');
 export const descriptionInput = userProfileForm.querySelector('.popup__input_property_description');
 

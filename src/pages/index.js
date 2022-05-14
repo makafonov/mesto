@@ -18,6 +18,7 @@ import {
   addCardButton,
   validationConfig,
   avatarButton,
+  avatarForm,
 } from '../utils/constants.js';
 import { errorHandler } from '../utils/helpers.js';
 
@@ -153,6 +154,7 @@ const editUserInfo = () => {
 };
 
 avatarButton.addEventListener('click', () => {
+  formValidators[avatarForm.getAttribute('name')].resetValidation();
   avatarPopup.open();
 });
 addCardButton.addEventListener('click', () => {
