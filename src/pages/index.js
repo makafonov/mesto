@@ -5,6 +5,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import {
@@ -27,6 +28,17 @@ const api = new Api({
   },
 });
 
+const formValidators = {};
+const enableValidation = ({ formSelector, ...params }) => {
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach((form) => {
+    const validator = new FormValidator(params, form);
+    validator.enableValidation();
+    formValidators[form.getAttribute('name')] = validator;
+  });
+};
+enableValidation(validationConfig);
+
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   descriptionSelector: '.profile__description',
@@ -40,13 +52,43 @@ api
   .catch(errorHandler);
 
 const previewPopup = new PopupWithImage('.popup_type_preview');
-
-const handleCardClick = (card) => {
-  previewPopup.open(card);
-};
+const confirmPopup = new PopupWithSubmit('.popup_type_confirm');
 
 const createCard = (data) => {
-  const card = new Card(data, '#gallery-item-template', handleCardClick);
+  const card = new Card(
+    {
+      data: {
+        currentUserId: userInfo._id,
+        ...data,
+      },
+      handleCardClick: () => {
+        previewPopup.open(card);
+      },
+      handleLikeClick: (cardObject) => {
+        const method = cardObject.isLiked()
+          ? api.removeLike(cardObject.getId())
+          : api.likeCard(cardObject.getId());
+        method
+          .then((data) => {
+            cardObject.updateLikes(data);
+          })
+          .catch(errorHandler);
+      },
+      handleDeleteClick: (cardObject) => {
+        confirmPopup.open();
+        confirmPopup.setAction(() => {
+          api
+            .deleteCard(cardObject.getId())
+            .then((_) => {
+              confirmPopup.close();
+              // TODO удалить из DOM
+            })
+            .catch(errorHandler);
+        });
+      },
+    },
+    '#gallery-item-template'
+  );
   return card.generateCard();
 };
 
@@ -60,7 +102,6 @@ const defaultCardList = new Section(
   },
   gallerySelector
 );
-
 api
   .getInitialCards()
   .then((data) => {
@@ -70,17 +111,6 @@ api
     });
   })
   .catch(errorHandler);
-
-const formValidators = {};
-const enableValidation = ({ formSelector, ...params }) => {
-  const formList = Array.from(document.querySelectorAll(formSelector));
-  formList.forEach((form) => {
-    const validator = new FormValidator(params, form);
-    validator.enableValidation();
-    formValidators[form.getAttribute('name')] = validator;
-  });
-};
-enableValidation(validationConfig);
 
 const cardPopup = new PopupWithForm('.popup_type_add-card', (inputValues) => {
   api
@@ -101,7 +131,7 @@ const profilePopup = new PopupWithForm('.popup_type_edit-profile', (inputValues)
     })
     .catch(errorHandler);
 });
-[previewPopup, cardPopup, profilePopup].forEach((popup) => popup.setEventListeners());
+[previewPopup, cardPopup, profilePopup, confirmPopup].forEach((popup) => popup.setEventListeners());
 
 addCardButton.addEventListener('click', () => {
   formValidators[addCardForm.getAttribute('name')].resetValidation();
